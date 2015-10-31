@@ -1,0 +1,11 @@
+---
+- hosts: vagrant
+  vars:
+    http_port: 80
+  remote_user: root
+  sudo: True
+  tasks:
+  - name: create aliases
+    lineinfile: dest=/home/vagrant/.profile line="alias ..=\"cd ..\""
+  - name: create aliases
+    lineinfile: dest=/home/vagrant/.profile line="alias ...=\"cd ../..\""

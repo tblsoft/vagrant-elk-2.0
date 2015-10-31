@@ -1,0 +1,16 @@
+---
+- hosts: vagrant
+  vars:
+    http_port: 80
+  remote_user: root
+  sudo: True
+  tasks:
+  - apt: pkg=software-properties-common state=present update_cache=yes
+  - apt: pkg=python-software-properties state=present update_cache=yes
+  - apt_repository: repo='ppa:webupd8team/java'
+  - shell: echo oracle-java8-installer shared/accepted-oracle-license-v1-1 select true | /usr/bin/debconf-set-selections
+  - apt: name=oracle-java8-installer update_cache=yes
+  - apt: name=ca-certificates update_cache=yes
+  - apt: name=oracle-java8-set-default update_cache=yes
+
+  

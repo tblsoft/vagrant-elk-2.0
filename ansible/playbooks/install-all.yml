@@ -1,0 +1,6 @@
+---
+- include: install-common.yml
+- include: install-java.yml
+- include: install-elastic.yml
+- include: install-logstash.yml
+- include: install-kibana.yml

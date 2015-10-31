@@ -1,0 +1,17 @@
+---
+- hosts: vagrant
+  vars:
+    http_port: 80
+  remote_user: root
+  sudo: True
+  tasks:
+  - apt_key: url=https://packages.elastic.co/GPG-KEY-elasticsearch state=present
+  - apt_repository: repo='deb http://packages.elasticsearch.org/logstash/2.0/debian stable main' state=present
+  - apt: name=logstash update_cache=yes
+  - service: name=logstash state=started enabled=yes
+  - name: Configure logstash
+    copy: src=../dist/etc/logstash/conf.d/ dest=/etc/logstash/conf.d/ owner=logstash group=logstash mode=0644
+  - name: copy example logs
+    copy: src=../dist/home/vagrant/ dest=/home/vagrant owner=vagrant group=vagrant mode=0644
+
+  

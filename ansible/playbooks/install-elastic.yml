@@ -1,0 +1,11 @@
+---
+- hosts: vagrant
+  vars:
+    http_port: 80
+  remote_user: root
+  sudo: True
+  tasks:
+  - apt_key: url=https://packages.elastic.co/GPG-KEY-elasticsearch state=present
+  - apt_repository: repo='deb http://packages.elastic.co/elasticsearch/2.x/debian stable main' state=present
+  - apt: name=elasticsearch update_cache=yes
+  - service: name=elasticsearch state=started enabled=yes

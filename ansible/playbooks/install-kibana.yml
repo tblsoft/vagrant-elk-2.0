@@ -1,0 +1,31 @@
+---
+- hosts: vagrant
+  vars:
+    http_port: 80
+  remote_user: root
+  sudo: True
+  tasks:
+  - apt: name=supervisor update_cache=yes
+  - service: name=supervisor state=started
+  - group: name=kibana state=present
+  - user: name=kibana comment="Kibana User" group=kibana state=present
+  - name: Download Kibana
+    get_url: url=https://download.elastic.co/kibana/kibana/kibana-4.2.0-linux-x64.tar.gz
+             dest=/usr/local/src/kibana-4.2.0-linux-x64.tar.gz
+  - name: Extract and install Kibana
+    unarchive: src=/usr/local/src/kibana-4.2.0-linux-x64.tar.gz
+               dest=/opt
+               copy=no
+               creates=/opt/kibana-4.2.0-linux-x64
+  - file: path=/opt/kibana-4.2.0-linux-x64 owner=kibana group=kibana state=directory recurse=yes
+  - name: create a symlink for kibana
+    file: src=/opt/kibana-4.2.0-linux-x64 dest=/opt/kibana owner=kibana group=kibana state=link
+  - name: Configure supervisor for kibana
+    copy: src=../dist/etc/supervisor/conf.d/kibana.conf dest=/etc/supervisor/conf.d/kibana.conf owner=kibana group=kibana mode=0644
+  - shell: sudo supervisorctl reread
+  - shell: sudo supervisorctl update
+
+
+           
+
+  
