@@ -3,8 +3,8 @@
 
 Vagrant.configure("2") do |config|
   config.vm.box = "precise64"
-  config.vm.network :forwarded_port, guest: 9200, host: 39200
-  config.vm.network :forwarded_port, guest: 5601, host: 35601
+  config.vm.network :forwarded_port, guest: 9200, host: 19200
+  config.vm.network :forwarded_port, guest: 5601, host: 15601
   config.vm.synced_folder "/tmp/artifacts", "/tmp/artifacts", create: true
   config.vm.provision "ansible" do |ansible|
         ansible.inventory_path = "/etc/ansible/hosts"
