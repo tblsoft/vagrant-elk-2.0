@@ -106,15 +106,15 @@ A good installation guide can be found at digitalocean:
 https://www.digitalocean.com/community/tutorials/how-to-install-and-manage-supervisor-on-ubuntu-and-debian-vps
 
 ## References
-https://www.elastic.co/products/elasticsearch
-https://www.elastic.co/products/logstash
-https://www.elastic.co/products/kibana
+- https://www.elastic.co/products/elasticsearch
+- https://www.elastic.co/products/logstash
+- https://www.elastic.co/products/kibana
 
-http://supervisord.org/
+- http://supervisord.org/
 
 
-https://www.digitalocean.com/community/tutorials/how-to-install-and-manage-supervisor-on-ubuntu-and-debian-vps
-https://www.digitalocean.com/community/tutorials/how-to-install-elasticsearch-logstash-and-kibana-4-on-ubuntu-14-04
+- https://www.digitalocean.com/community/tutorials/how-to-install-and-manage-supervisor-on-ubuntu-and-debian-vps
+- https://www.digitalocean.com/community/tutorials/how-to-install-elasticsearch-logstash-and-kibana-4-on-ubuntu-14-04
 
-https://github.com/elastic/kibana/issues/1811
+- https://github.com/elastic/kibana/issues/1811
 
