@@ -1,14 +1,8 @@
-This vagrant box installs elasticsearch 2.0, logstash 2.0 and kibana 4.2.0
-
-## Todos
-- nginx as proxy
-- beaver
-- kafka
-
+This vagrant box installs elasticsearch 2.3, logstash 2.3, kibana 4.5.3 and filebeat 1.2.3
 
 ## Prerequisites
 
-[VirtualBox](https://www.virtualbox.org/) and [Vagrant](http://www.vagrantup.com/)
+[VirtualBox](https://www.virtualbox.org/), [Vagrant](http://www.vagrantup.com/) and [Ansible](https://www.ansible.com/) 
 
 ## Up and SSH
 
@@ -47,8 +41,8 @@ Installed via debian package, started on boot.
 
 ```bash
 
-  sudo /etc/init.d/elasticsearch start
-  sudo /etc/init.d/elasticsearch stop
+  sudo service elasticsearch start
+  sudo service elasticsearch stop
 
 ```
 
@@ -58,52 +52,38 @@ Installed via debian package, started on boot.
 
 ```bash
 
-  sudo /etc/init.d/logstash start
-  sudo /etc/init.d/logstash stop
+  sudo service logstash start
+  sudo service logstash stop
 
 ```
 
 ##Kibana 
-Kibana does not provide debian packackes at the moment. Because of this the supervisor deamon is used to control kibana.
-
-Configuration:
+Installed via debian package, started on boot.
 
 ```bash
-root@precise64:/etc/supervisor/conf.d# cat kibana.conf 
-[program:kibana]
-command=/opt/kibana/bin/kibana
-user=kibana
-autostart=true
-autorestart=true
-stderr_logfile=/var/log/kibana.err.log
-stdout_logfile=/var/log/kibana.out.log
+
+  sudo service kibana start
+  sudo service kibana stop
 
 ```
 
-Controlled by
+##Filebeat 
+Installed via debian package, started on boot.
+For demonstartion the filebeat ships the logs directly to elasticsearch and to logstash.
+
 
 ```bash
-  sudo supervisorctl reread
-  sudo supervisorctl update
-  sudo supervisorctl start kibana
-  sudo supervisorctl stop kibana
+
+  sudo service filebeat start
+  sudo service filebeat stop
 
 ```
 
+
+## Nginx
+To ristrict the access to kibana and elastic, nginx is uses as a revervese proxy to allow external access and security.
+ 
 ## Ansible
-
-## supervisord
-To control kibana the supervisor deamon is used.
-
-```bash
-
-  supervisorctl
-  supervisor> help
-
-```
-
-A good installation guide can be found at digitalocean:
-https://www.digitalocean.com/community/tutorials/how-to-install-and-manage-supervisor-on-ubuntu-and-debian-vps
 
 ## References
 - https://www.elastic.co/products/elasticsearch
@@ -115,6 +95,7 @@ https://www.digitalocean.com/community/tutorials/how-to-install-and-manage-super
 
 - https://www.digitalocean.com/community/tutorials/how-to-install-and-manage-supervisor-on-ubuntu-and-debian-vps
 - https://www.digitalocean.com/community/tutorials/how-to-install-elasticsearch-logstash-and-kibana-4-on-ubuntu-14-04
+- https://www.digitalocean.com/community/tutorials/how-to-install-apache-kafka-on-ubuntu-14-04
 
 - https://github.com/elastic/kibana/issues/1811
 

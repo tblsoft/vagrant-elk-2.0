@@ -4,3 +4,5 @@
 - include: install-elastic.yml
 - include: install-logstash.yml
 - include: install-kibana.yml
+- include: install-nginx.yml
+- include: install-filebeat.yml

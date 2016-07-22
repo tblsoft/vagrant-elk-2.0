@@ -5,13 +5,12 @@
   remote_user: root
   sudo: True
   tasks:
+  #https://www.elastic.co/guide/en/logstash/current/installing-logstash.html
   - apt_key: url=https://packages.elastic.co/GPG-KEY-elasticsearch state=present
-  - apt_repository: repo='deb http://packages.elasticsearch.org/logstash/2.0/debian stable main' state=present
+  - apt_repository: repo='deb https://packages.elastic.co/logstash/2.3/debian stable main' state=present
   - apt: name=logstash update_cache=yes
   - service: name=logstash state=started enabled=yes
   - name: Configure logstash
     copy: src=../dist/etc/logstash/conf.d/ dest=/etc/logstash/conf.d/ owner=logstash group=logstash mode=0644
-  - name: copy example logs
-    copy: src=../dist/home/vagrant/ dest=/home/vagrant owner=vagrant group=vagrant mode=0644
 
   

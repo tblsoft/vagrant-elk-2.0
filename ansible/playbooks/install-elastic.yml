@@ -9,3 +9,4 @@
   - apt_repository: repo='deb http://packages.elastic.co/elasticsearch/2.x/debian stable main' state=present
   - apt: name=elasticsearch update_cache=yes
   - service: name=elasticsearch state=started enabled=yes
+  - elasticsearch_plugin: state=present name="mobz/elasticsearch-head"
