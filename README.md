@@ -98,4 +98,4 @@ To ristrict the access to kibana and elastic, nginx is uses as a revervese proxy
 - https://www.digitalocean.com/community/tutorials/how-to-install-apache-kafka-on-ubuntu-14-04
 
 - https://github.com/elastic/kibana/issues/1811
-
+- https://www.digitalocean.com/community/tutorials/how-to-install-elasticsearch-logstash-and-kibana-elk-stack-on-ubuntu-16-04
